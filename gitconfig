@@ -1,0 +1,10 @@
+[core]
+	editor = "nvim"
+[init]
+	defaultBranch = main
+[alias]
+	st = "status"
+	ps = "push origin HEAD"
+	pushf = "push --force-with-lease --force-if-includes origin HEAD"
+[rebase]
+	autostash = true

@@ -1,0 +1,29 @@
+if [ -f ~/.git-prompt.sh ]; then
+  source ~/.git-prompt.sh
+fi
+
+if [ -x ~/.local/bin/mise ]; then
+  eval "$(~/.local/bin/mise activate zsh)"
+fi
+
+setopt PROMPT_SUBST
+PS1='%n@%m%~$(__git_ps1 "(%s)")%(!.#.$) '
+
+alias ls='ls -a --color'
+alias ll='ls -l'
+alias dcp='docker compose up -d'
+alias dcd='docker compose down'
+alias doe='docker exec -it $(docker ps --format "{{.Names}}" | fzf) bash'
+alias dsp='docker_down_container'
+
+function docker_down_container() {
+  funcname=${funcstack[@]:0:1}
+  count_active_containers=$(docker ps -qa | wc -l)
+
+  if [ $count_active_containers -eq 0 ]; then
+    echo "[ ${funcname} ] not found active containers"
+  elif if [ $count_active_containers -gt 0 ]; then
+    docker stop $(docker ps -qa)
+    docker rm $(docker ps -qa)
+  fi
+}
