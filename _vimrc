@@ -56,6 +56,7 @@ function! PackInit() abort
   call minpac#add('Shougo/ddu.vim')
   call minpac#add('Shougo/ddu-ui-ff')
   call minpac#add('Shougo/ddu-source-file_rec')
+  call minpac#add('Shougo/ddu-kind-file')
   call minpac#add('Shougo/ddu-source-action')
   call minpac#add('Shougo/ddu-filter-matcher_substring')
   call minpac#add('Shougo/ddu-commands.vim')
