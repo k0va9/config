@@ -1,6 +1,14 @@
 " vim:foldmethod=marker:foldlevelstart=0
 
 " custom function {{{
+
+function! Grep() abort
+  let s:pattern = input({'prompt':'search: '})
+  redraw
+
+  execute printf ("silent grep %s", s:pattern)
+endfunction
+
 function! TabLine() abort
   let format = ''
   for i in range(1, tabpagenr('$'))
@@ -161,6 +169,8 @@ catch
 endtry
 
 
+au QuickFixCmdPost *grep* cwindow
+
 set shiftwidth=2
 set expandtab
 set ambiwidth=double
@@ -169,6 +179,7 @@ set mouse=
 set noswapfile
 set tabline=%!TabLine()
 set showtabline=2
+set switchbuf+=usetab
 "}}}
 
 "mapping {{{
@@ -178,6 +189,7 @@ call Key('t' , '<C-[>', '<C-\><C-n>')
 call Key('n' , 'gh'   , '<Cmd>LspHover<CR>')
 call Key('n' , 'gr'   , '<Cmd>LspReferences<CR>')
 call Key('n' , 'gd'   , '<Cmd>LspDefinition<CR>')
+call Key('n' , ';g'   , '<Cmd>call Grep()<CR>')
 call Key('n' , ',f'   , '<Cmd>edit .<CR>')
 call Key('n' , ',q'   , '<Cmd>confirm quit<CR>')
 call Key('c' , '<C-x>', '<C-r>=expand("%:p")<CR>')
@@ -215,3 +227,17 @@ if filereadable(expand('~/.vimrc_local'))
   source ~/.vimrc_local
 endif
 
+"lua code {{{
+
+lua << END
+  local function checkIsGitManagedDir()
+    return vim.fs.root(0, '.git')  ~= nil
+  end
+
+  -- set git grep as grepprg when exist '.git'
+  if checkIsGitManagedDir() then
+    vim.go.grepprg = "git grep -n"
+  end
+END
+
+"}}}
