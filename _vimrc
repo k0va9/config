@@ -1,3 +1,5 @@
+" vim:foldmethod=marker:foldlevelstart=0
+
 " custom function {{{
 function! TabLine() abort
   let format = ''
@@ -213,4 +215,3 @@ if filereadable(expand('~/.vimrc_local'))
   source ~/.vimrc_local
 endif
 
-" vim:foldmethod=marker:foldlevelstart=0
