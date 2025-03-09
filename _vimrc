@@ -181,11 +181,15 @@ set mouse=
 set noswapfile
 set tabline=%!TabLine()
 set showtabline=2
-set switchbuf+=usetab
+set hidden
 "}}}
 
 "mapping {{{
-let g:mapleader="\<Space>"
+let g:mapleader=","
+nmap <Space> [Space]
+nnoremap [Space] <Nop>
+nnoremap [Space]t <Cmd>belowright new<CR><Cmd>resize 15<CR><Cmd>terminal<CR>
+nnoremap <Tab> <Cmd>wincmd w<CR>
 
 call Key('t' , '<C-[>', '<C-\><C-n>')
 call Key('n' , 'gh'   , '<Cmd>LspHover<CR>')
