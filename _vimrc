@@ -168,6 +168,9 @@ catch
   highlight clear FloatBorder
 endtry
 
+if finddir('.git') !=# ''
+  set grepprg=git\ grep\ -n
+endif
 
 au QuickFixCmdPost *grep* cwindow
 
@@ -224,22 +227,7 @@ nnoremap <Space>f <Cmd>Ddu file_rec
       \ <CR>
 "}}}
 
-
 if filereadable(expand('~/.vimrc_local'))
   source ~/.vimrc_local
 endif
 
-"lua code {{{
-
-lua << END
-  local function checkIsGitManagedDir()
-    return vim.fs.root(0, '.git')  ~= nil
-  end
-
-  -- set git grep as grepprg when exist '.git'
-  if checkIsGitManagedDir() then
-    vim.go.grepprg = "git grep -n"
-  end
-END
-
-"}}}
