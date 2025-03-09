@@ -70,7 +70,6 @@ function! PackInit() abort
   call minpac#add('Shougo/ddu-source-action')
   call minpac#add('Shougo/ddu-filter-matcher_substring')
   call minpac#add('Shougo/ddu-commands.vim')
-  call minpac#add('kyoh86/ddu-source-git_log')
 
   "lsp
   call minpac#add('prabirshrestha/vim-lsp')
@@ -214,12 +213,6 @@ autocmd FileType molder
       \ call Key('n', 'h', '<Plug>(molder-up)',v:true)   | 
       \ call Key('n', 'l', '<Plug>(molder-open)',v:true)
 
-nnoremap g<Space> <Cmd>Ddu git_log
-      \ -ui=ff
-      \ -ui-param-ff-floatingTitle=gitlog
-      \ -ui-param-ff-winWidth=&columns
-      \ -source-param-git_log-showGraph=v:true
-      \ <CR>
 nnoremap <Space>f <Cmd>Ddu file_rec
       \ -ui=ff
       \ -ui-param-ff-floatingTitle=fuzzyfinnd
