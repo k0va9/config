@@ -70,6 +70,7 @@ function! PackInit() abort
   call minpac#add('Shougo/ddu-source-action')
   call minpac#add('Shougo/ddu-filter-matcher_substring')
   call minpac#add('Shougo/ddu-commands.vim')
+  call minpac#add('shun/ddu-source-buffer')
 
   "lsp
   call minpac#add('prabirshrestha/vim-lsp')
@@ -217,10 +218,14 @@ autocmd FileType molder
       \ call Key('n', 'h', '<Plug>(molder-up)',v:true)   | 
       \ call Key('n', 'l', '<Plug>(molder-open)',v:true)
 
+nnoremap ;b <Cmd>Ddu buffer
+      \ -ui=ff
+      \ -ui-param-ff-floatingTitle=buffer
+      \ <CR>
+
 nnoremap <Space>f <Cmd>Ddu file_rec
       \ -ui=ff
       \ -ui-param-ff-floatingTitle=fuzzyfinnd
-      \ -ui-param-ff-startAutoAction=v:true
       \ <CR>
 "}}}
 
