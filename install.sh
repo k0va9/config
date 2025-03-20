@@ -20,7 +20,6 @@ fi
 
 echo "=== create symlinks ==="
 ln -nfs "${SCRIPT_DIR}/_vimrc" ~/.config/nvim/init.vim
-ln -nfs "${SCRIPT_DIR}/snippet" ~/.config/nvim/snippet
 ln -nfs "${SCRIPT_DIR}/_zshrc" ~/.zshrc
 ln -nfs "${SCRIPT_DIR}/tmux.conf" ~/.tmux.conf
 echo "=== finish create symlinks ==="

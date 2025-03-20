@@ -32,14 +32,6 @@ function! Key(modes, key, action, buf = v:false, silent = v:false) abort
     execute printf(join(base,' ').' %s %s', mode, a:key, a:action)
   endfor
 endfunction
-
-function! s:editsnippet() abort
-  let l:filetype = getbufvar(bufnr(), '&ft')
-  let l:extension = 'toml'
-  let l:path = g:snippet_dir . l:filetype . '.' . l:extension
-
-  execute printf('edit %s',l:path)
-endfunction
 " }}}
 
 "plugins {{{
@@ -60,7 +52,6 @@ function! PackInit() abort
   call minpac#add('cocopon/iceberg.vim')
   call minpac#add('tyru/caw.vim')
   call minpac#add('mattn/vim-molder')
-  call minpac#add('uga-rosa/denippet.vim')
 
   "ddu
   call minpac#add('Shougo/ddu.vim')
@@ -138,12 +129,6 @@ function! s:my_ddu_keymaps() abort
 endfunction
 " }}}
 
-let g:snippet_dir = stdpath('config').'/snippet/'
-
-for file in glob(g:snippet_dir.'*.*',1,1)
-  call denippet#load(file)
-endfor
-
 "disable Please do... message
 let g:lsp_settings_enable_suggestions=0
 let g:caw_no_default_keymappings=1
@@ -153,7 +138,6 @@ let g:caw_no_default_keymappings=1
 "commands {{{
 command! PackUpdate call PackInit() | call minpac#update()
 command! PackClean call PackInit() | call minpac#clean()
-command! EditSnippet call s:editsnippet()
 "}}}
 
 "opts {{{
@@ -208,11 +192,6 @@ call Key('nx', 'ccz'  , '<Plug>(caw:zeropos:comment)')
 call Key('nx', 'ccuz' , '<Plug>(caw:zeropos:uncomment)')
 call Key('nx', 'cca'  , '<Plug>(caw:dollarpos:comment)')
 call Key('nx', 'ccua' , '<Plug>(caw:dollarpos:uncomment)')
-inoremap <expr> <Tab>   denippet#jumpable()   ? '<Plug>(denippet-jump-next)' : '<Tab>'
-snoremap <expr> <Tab>   denippet#jumpable()   ? '<Plug>(denippet-jump-next)' : '<Tab>'
-inoremap <expr> <S-Tab> denippet#jumpable(-1) ? '<Plug>(denippet-jump-prev)' : '<S-Tab>'
-snoremap <expr> <S-Tab> denippet#jumpable(-1) ? '<Plug>(denippet-jump-prev)' : '<S-Tab>'
-inoremap <C-l> <Plug>(denippet-expand)
 
 autocmd FileType molder 
       \ call Key('n', 'h', '<Plug>(molder-up)',v:true)   | 
