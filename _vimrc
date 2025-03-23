@@ -52,6 +52,8 @@ function! PackInit() abort
   call minpac#add('cocopon/iceberg.vim')
   call minpac#add('tyru/caw.vim')
   call minpac#add('mattn/vim-molder')
+  call minpac#add('ctrlpvim/ctrlp.vim')
+  call minpac#add('mattn/ctrlp-matchfuzzy')
 
   "lsp
   call minpac#add('prabirshrestha/vim-lsp')
@@ -63,6 +65,10 @@ endfunction
 "disable Please do... message
 let g:lsp_settings_enable_suggestions=0
 let g:caw_no_default_keymappings=1
+let g:ctrlp_show_hidden = 1
+let g:ctrlp_max_files=10000
+let g:ctrlp_custom_ignore = 'node_modules\|vendor\|DS_Store\|git'
+let g:ctrlp_match_func = #{ match: 'ctrlp_matchfuzzy#matcher'}
 
 "}}}
 
@@ -128,6 +134,8 @@ autocmd FileType molder
       \ call Key('n', 'h', '<Plug>(molder-up)',v:true)   | 
       \ call Key('n', 'l', '<Plug>(molder-open)',v:true)
 
+call Key('n', '[Space]f', '<Cmd>CtrlP<CR>')
+call Key('n', ';b', '<Cmd>CtrlPBuffer<CR>')
 
 if filereadable(expand('~/.vimrc_local'))
   source ~/.vimrc_local
