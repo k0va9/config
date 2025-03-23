@@ -53,81 +53,12 @@ function! PackInit() abort
   call minpac#add('tyru/caw.vim')
   call minpac#add('mattn/vim-molder')
 
-  "ddu
-  call minpac#add('Shougo/ddu.vim')
-  call minpac#add('Shougo/ddu-ui-ff')
-  call minpac#add('Shougo/ddu-source-file_rec')
-  call minpac#add('Shougo/ddu-kind-file')
-  call minpac#add('Shougo/ddu-source-action')
-  call minpac#add('Shougo/ddu-filter-matcher_substring')
-  call minpac#add('Shougo/ddu-commands.vim')
-  call minpac#add('shun/ddu-source-buffer')
-
   "lsp
   call minpac#add('prabirshrestha/vim-lsp')
   call minpac#add('mattn/vim-lsp-settings')
   call minpac#add('prabirshrestha/asyncomplete.vim')
   call minpac#add('prabirshrestha/asyncomplete-lsp.vim')
 endfunction
-
-" ddu {{{
-call ddu#custom#action('ui', 'ff', 'tabedit',
-  \ { args -> ddu#ui#do_action('itemAction', #{params: #{command: 'tabedit'}})
-  \ })
-
-
-call ddu#custom#patch_global(#{
-  \ sourceOptions: #{
-  \   _: #{
-  \       matchers: ['matcher_substring'],
-  \       ignoreCase: v:true
-  \     },
-  \ },
-  \ sourceParams: #{
-  \  file_rec: #{
-  \     ignoredDirectories: ['.git','node_modules','vendor','.vscode']
-  \  },
-  \ },
-  \ kindOptions: #{
-  \   action: #{
-  \     defaultAction: 'do',
-  \   },
-  \   file_rec: #{
-  \     defaultAction: 'open',
-  \   },
-  \   file: #{
-  \     defaultAction: 'open',
-  \   },
-  \ },
-  \ uiParams: #{
-  \   _:  #{
-  \    split: 'floating',
-  \    floatingBorder: 'rounded',
-  \    floatingTitlePos: 'center'
-  \   },
-  \   ff: #{
-  \     prompt: ">> ",
-  \   }
-  \ },
-  \ })
-
-autocmd FileType ddu-ff,ddu-filer call s:my_ddu_keymaps()
-
-function! s:my_ddu_keymaps() abort
-  call Key('n', 'q'    , "<Cmd>call ddu#ui#do_action('quit')<CR>"        , v:true, v:true)
-  call Key('n', 'a'    , "<Cmd>call ddu#ui#do_action('chooseAction')<CR>", v:true, v:true)
-  call Key('n', 't'    , "<Cmd>call ddu#ui#do_action('tabedit')<CR>"     , v:true, v:true)
-  call Key('n', '<ESC>', "<Cmd>call ddu#ui#do_action('quit')<CR>"        , v:true, v:true)
-  call Key('n', '<ESC>', "<Cmd>call ddu#ui#do_action('quit')<CR>"        , v:true, v:true)
-  call Key('n', '<CR>' , "<Cmd>call ddu#ui#do_action('itemAction')<CR>"  , v:true, v:true)
-
-  let uiName =  ddu#custom#get_current()->get('ui')
-
-  if uiName == 'ff'
-    call Key('n', 'i', "<Cmd>call ddu#ui#do_action('openFilterWindow')<CR>", v:true, v:true)
-  endif
-endfunction
-" }}}
 
 "disable Please do... message
 let g:lsp_settings_enable_suggestions=0
@@ -197,16 +128,6 @@ autocmd FileType molder
       \ call Key('n', 'h', '<Plug>(molder-up)',v:true)   | 
       \ call Key('n', 'l', '<Plug>(molder-open)',v:true)
 
-nnoremap ;b <Cmd>Ddu buffer
-      \ -ui=ff
-      \ -ui-param-ff-floatingTitle=buffer
-      \ <CR>
-
-nnoremap <Space>f <Cmd>Ddu file_rec
-      \ -ui=ff
-      \ -ui-param-ff-floatingTitle=fuzzyfinnd
-      \ <CR>
-"}}}
 
 if filereadable(expand('~/.vimrc_local'))
   source ~/.vimrc_local
