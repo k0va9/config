@@ -119,7 +119,10 @@ call Key('n' , 'gr'   , '<Cmd>LspReferences<CR>')
 call Key('n' , 'gd'   , '<Cmd>LspDefinition<CR>')
 call Key('n' , ';g'   , '<Cmd>call Grep()<CR>')
 call Key('n' , ',f'   , '<Cmd>edit .<CR>')
+call Key('n' , ',w'   , '<Cmd>update<CR>')
 call Key('n' , ',q'   , '<Cmd>confirm quit<CR>')
+call Key('n', '[Space]f', '<Cmd>CtrlP<CR>')
+call Key('n', ';b', '<Cmd>CtrlPBuffer<CR>')
 call Key('c' , '<C-x>', '<C-r>=expand("%:p")<CR>')
 call Key('c' , '<C-a>', '<Home>')
 call Key('c' , '<C-e>', '<End>')
@@ -134,8 +137,6 @@ autocmd FileType molder
       \ call Key('n', 'h', '<Plug>(molder-up)',v:true)   | 
       \ call Key('n', 'l', '<Plug>(molder-open)',v:true)
 
-call Key('n', '[Space]f', '<Cmd>CtrlP<CR>')
-call Key('n', ';b', '<Cmd>CtrlPBuffer<CR>')
 
 if filereadable(expand('~/.vimrc_local'))
   source ~/.vimrc_local
