@@ -9,6 +9,13 @@ function! Grep() abort
   execute printf ("silent grep %s", s:pattern)
 endfunction
 
+function! Terminal() abort
+  call Cd(expand('%:p:h'))
+  belowright new
+  resize 15
+  terminal
+endfunction
+
 function! Cd(path=getcwd()) abort
     execute printf('lcd %s', a:path)
 endfunction
@@ -114,7 +121,6 @@ set hidden
 let g:mapleader=","
 nmap <Space> [Space]
 nnoremap [Space] <Nop>
-nnoremap [Space]t <Cmd>belowright new<CR><Cmd>resize 15<CR><Cmd>terminal<CR>
 nnoremap <Tab> <Cmd>wincmd w<CR>
 
 call Key('t' , '<C-[>', '<C-\><C-n>')
@@ -126,6 +132,7 @@ call Key('n' , ',f'   , '<Cmd>edit .<CR>')
 call Key('n' , ',w'   , '<Cmd>update<CR>')
 call Key('n' , ',q'   , '<Cmd>confirm quit<CR>')
 call Key('n', '[Space]f', '<Cmd>CtrlP<CR>')
+call Key('n', '[Space]t', '<Cmd>call Terminal()<CR>')
 call Key('n', ';b', '<Cmd>CtrlPBuffer<CR>')
 call Key('c' , '<C-x>', '<C-r>=expand("%:p")<CR>')
 call Key('c' , '<C-a>', '<Home>')
