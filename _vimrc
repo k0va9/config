@@ -105,6 +105,7 @@ if finddir('.git') !=# ''
 endif
 
 au QuickFixCmdPost *grep* cwindow
+au TabNewEntered * call Cd(expand('%:p:h'))
 
 set shiftwidth=2
 set expandtab
