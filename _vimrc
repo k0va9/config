@@ -9,6 +9,10 @@ function! Grep() abort
   execute printf ("silent grep %s", s:pattern)
 endfunction
 
+function! Cd(path=getcwd()) abort
+    execute printf('lcd %s', a:path)
+endfunction
+
 function! TabLine() abort
   let format = ''
   for i in range(1, tabpagenr('$'))
