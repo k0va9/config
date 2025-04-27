@@ -4,7 +4,10 @@
 	defaultBranch = main
 [alias]
 	st = "status"
+	sw = "switch"
 	ps = "push origin HEAD"
+	plog = "log -p"
+	graph = "log --oneline --graph"
 	pushf = "push --force-with-lease --force-if-includes origin HEAD"
 [rebase]
 	autostash = true
