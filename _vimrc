@@ -65,6 +65,8 @@ function! PackInit() abort
   call minpac#add('mattn/vim-molder')
   call minpac#add('ctrlpvim/ctrlp.vim')
   call minpac#add('mattn/ctrlp-matchfuzzy')
+  call minpac#add('hrsh7th/vim-vsnip')
+  call minpac#add('hrsh7th/vim-vsnip-integ')
 
   "lsp
   call minpac#add('prabirshrestha/vim-lsp')
@@ -91,6 +93,10 @@ command! PackClean call PackInit() | call minpac#clean()
 "opts {{{
 
 let loaded_netrwPlugin = 1
+
+let g:vsnip_snippet_dir = expand('~/config/snippet')
+let g:vsnip_filetypes = {}
+let g:vsnip_filetypes.typescript = ['javascript']
 
 try
   colorscheme iceberg
@@ -144,6 +150,11 @@ call Key('nx', 'ccz'  , '<Plug>(caw:zeropos:comment)')
 call Key('nx', 'ccuz' , '<Plug>(caw:zeropos:uncomment)')
 call Key('nx', 'cca'  , '<Plug>(caw:dollarpos:comment)')
 call Key('nx', 'ccua' , '<Plug>(caw:dollarpos:uncomment)')
+
+imap <expr> <C-j> vsnip#expandable() ? '<Plug>(vsnip-expand)' : '<C-j>'
+smap <expr> <C-j> vsnip#expandable() ? '<Plug>(vsnip-expand)' : '<C-j>'
+imap <expr> <C-l> vsnip#available(1) ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
+smap <expr> <C-l> vsnip#available(1) ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
 
 autocmd FileType molder 
       \ call Key('n', 'h', '<Plug>(molder-up)',v:true)   | 

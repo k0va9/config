@@ -1,0 +1,23 @@
+{
+  "dd": {
+    "prefix": ["dd"],
+    "body": [
+      "dd($1);"
+    ]
+  },
+  "function": {
+    "prefix": ["fn"],
+    "body": [
+      "function $2($3) {",
+      "\t$0",
+      "}"
+    ]
+  },
+  "debug": {
+    "prefix": ["debug"],
+    "body": [
+      "logger()->debug($1);"
+    ],
+    "description": "debug(laravel)"
+  }
+}
