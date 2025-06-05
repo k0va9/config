@@ -126,14 +126,22 @@ set hidden
 
 "mapping {{{
 let g:mapleader=","
-nmap <Space> [Space]
+
+"keymap prefix
 nnoremap [Space] <Nop>
+nmap <Space> [Space]
+
+nnoremap [LSP] <Nop>
+nmap e [LSP]
+
 nnoremap <Tab> <Cmd>wincmd w<CR>
 
 call Key('t' , '<C-[>', '<C-\><C-n>')
-call Key('n' , 'gh'   , '<Cmd>LspHover<CR>')
-call Key('n' , 'gr'   , '<Cmd>LspReferences<CR>')
-call Key('n' , 'gd'   , '<Cmd>LspDefinition<CR>')
+call Key('n' , '[LSP]h'   , '<Cmd>LspHover<CR>')
+call Key('n' , '[LSP]r'   , '<Cmd>LspReferences<CR>')
+call Key('n' , '[LSP]d'   , '<Cmd>LspDefinition<CR>')
+call Key('nx', '[LSP]f'   , '<Cmd>LspDocumentFormatSync<CR>')
+
 call Key('n' , ';g'   , '<Cmd>call Grep()<CR>')
 call Key('n' , ',f'   , '<Cmd>edit .<CR>')
 call Key('n' , ',w'   , '<Cmd>update<CR>')
@@ -144,7 +152,6 @@ call Key('n', ';b', '<Cmd>CtrlPBuffer<CR>')
 call Key('c' , '<C-x>', '<C-r>=expand("%:p")<CR>')
 call Key('c' , '<C-a>', '<Home>')
 call Key('c' , '<C-e>', '<End>')
-call Key('nx', 'gf'   , '<Cmd>LspDocumentFormatSync<CR>')
 call Key('nx', 'ccm'  , '<Plug>(caw:hatpos:toggle)')
 call Key('nx', 'ccz'  , '<Plug>(caw:zeropos:comment)')
 call Key('nx', 'ccuz' , '<Plug>(caw:zeropos:uncomment)')
