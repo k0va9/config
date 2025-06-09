@@ -141,10 +141,11 @@ set expandtab
 set ambiwidth=double
 set foldmethod=expr
 set foldexpr=v:lua.vim.treesitter.foldexpr()
+set foldlevelstart=1
 set mouse=
 set noswapfile
 set tabline=%!TabLine()
-set showtabline=2
+set showtabline=1
 set hidden
 "}}}
 
