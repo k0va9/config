@@ -59,6 +59,7 @@ function! PackInit() abort
   call minpac#init()
   call minpac#add('k-takata/minpac', { 'type': 'opt' })
   call minpac#add('vim-denops/denops.vim')
+  call minpac#add('kat0h/bufpreview.vim', { 'do': 'silent! !deno task prepare'})
   call minpac#add('prettier/vim-prettier')
   call minpac#add('cocopon/iceberg.vim')
   call minpac#add('tyru/caw.vim')
