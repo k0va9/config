@@ -119,6 +119,11 @@ command! PackClean call PackInit() | call minpac#clean()
 
 let loaded_netrwPlugin = 1
 
+let g:lsp_settings_filetype_typescript = [
+      \ 'typescript-language-server',
+      \ 'deno'
+      \ ]
+
 let g:vsnip_snippet_dir = expand('~/config/snippet')
 let g:vsnip_filetypes = {}
 let g:vsnip_filetypes.typescript = ['javascript']
@@ -144,6 +149,7 @@ set ambiwidth=double
 set foldmethod=expr
 set foldexpr=v:lua.vim.treesitter.foldexpr()
 set foldlevelstart=1
+set foldminlines=30
 set mouse=
 set noswapfile
 set tabline=%!TabLine()
@@ -162,6 +168,7 @@ nnoremap [LSP] <Nop>
 nmap e [LSP]
 
 nnoremap <Tab> <Cmd>wincmd w<CR>
+nnoremap K <Nop>
 
 call Key('t' , '<C-[>', '<C-\><C-n>')
 call Key('n' , '[LSP]h'   , '<Cmd>LspHover<CR>')
