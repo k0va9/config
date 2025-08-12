@@ -7,7 +7,10 @@ if [ -x ~/.local/bin/mise ]; then
 fi
 
 setopt PROMPT_SUBST
-PS1='%n@%m%~$(__git_ps1 "(%s)")%(!.#.$) '
+
+precmd() {
+  PS1="%n@%m%~(%F{magenta}$(__git_ps1 '%s')%f)$(setup_custom_status) %f%(!.#.$) "
+}
 
 alias ls='ls -a --color'
 alias ll='ls -l'
@@ -25,5 +28,13 @@ function docker_down_container() {
   elif if [ $count_active_containers -gt 0 ]; then
     docker stop $(docker ps -qa)
     docker rm $(docker ps -qa)
+  fi
+}
+
+function setup_custom_status() {
+  count_bg_jobs=$(jobs| wc -l)
+
+  if [ $count_bg_jobs -gt 0 ]; then
+    echo "[bg:%j]"
   fi
 }
