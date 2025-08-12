@@ -69,6 +69,7 @@ function! PackInit() abort
   call minpac#add('mattn/ctrlp-matchfuzzy')
   call minpac#add('hrsh7th/vim-vsnip')
   call minpac#add('hrsh7th/vim-vsnip-integ')
+  call minpac#add('mattn/vim-maketable')
 
   "lsp
   call minpac#add('prabirshrestha/vim-lsp')
