@@ -38,3 +38,11 @@ function setup_custom_status() {
     echo "[bg:%j]"
   fi
 }
+
+function fzy_hist() {
+  BUF=$(history -n -r 1 | fzf --no-sort +m)
+  zle clear-screen
+}
+
+zle -N fzy_hist
+bindkey "^r" fzy_hist
