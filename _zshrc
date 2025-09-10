@@ -7,6 +7,11 @@ if [ -x ~/.local/bin/mise ]; then
 fi
 
 setopt PROMPT_SUBST
+setopt IGNORE_EOF
+
+setopt hist_ignore_dups
+setopt hist_ignore_all_dups
+setopt list_types
 
 precmd() {
   PS1="%n@%m%~(%F{magenta}$(__git_ps1 '%s')%f)$(setup_custom_status) %f%(!.#.$) "
