@@ -45,8 +45,10 @@ function setup_custom_status() {
 }
 
 function fzy_hist() {
-  BUF=$(history -n -r 1 | fzf --no-sort +m)
-  zle clear-screen
+  BUFFER=$(history -n -r 1 | fzf --no-sort +m)
+  # move end of line
+  CURSOR=$#BUFFER
+  zle reset-prompt
 }
 
 zle -N fzy_hist
