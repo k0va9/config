@@ -14,7 +14,7 @@ setopt hist_ignore_all_dups
 setopt list_types
 
 precmd() {
-  PS1="%n@%m%~(%F{magenta}$(__git_ps1 '%s')%f)$(setup_custom_status) %f%(!.#.$) "
+  PS1="%n@%m%~$(__git_ps1 "(%s)")$(setup_custom_status)%f"$'\n'"%(!.#.$) "
 }
 
 alias ls='ls -a --color'
