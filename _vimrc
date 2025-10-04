@@ -77,9 +77,6 @@ function! PackInit() abort
   call minpac#add('prabirshrestha/asyncomplete.vim')
   call minpac#add('prabirshrestha/asyncomplete-lsp.vim')
 
-  if has('nvim')
-    call minpac#add('nvim-treesitter/nvim-treesitter')
-  endif
 endfunction
 
 "disable Please do... message
@@ -89,26 +86,6 @@ let g:ctrlp_show_hidden = 1
 let g:ctrlp_max_files=10000
 let g:ctrlp_custom_ignore = 'node_modules\|vendor\|DS_Store\|git'
 let g:ctrlp_match_func = #{ match: 'ctrlp_matchfuzzy#matcher'}
-
-" only nvim configurations (e.g. treesitter) {{{
-if has('nvim')
-lua << END
-require('nvim-treesitter.configs').setup {
-  highlight = { enable = true },
-  auto_install = true,
-  ensure_installed = {
-    "html",
-    "javascript",
-    "json",
-    "php",
-    "typescript",
-    "vim",
-    "vue"
-  },
-}
-END
-endif
-"}}}
 "}}}
 
 "commands {{{
@@ -147,10 +124,6 @@ au TabNewEntered * call Cd(expand('%:p:h'))
 set shiftwidth=2
 set expandtab
 set ambiwidth=double
-set foldmethod=expr
-set foldexpr=v:lua.vim.treesitter.foldexpr()
-set foldlevelstart=1
-set foldminlines=30
 set mouse=
 set noswapfile
 set tabline=%!TabLine()
