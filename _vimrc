@@ -91,6 +91,7 @@ let g:ctrlp_match_func = #{ match: 'ctrlp_matchfuzzy#matcher'}
 "commands {{{
 command! PackUpdate call PackInit() | call minpac#update()
 command! PackClean call PackInit() | call minpac#clean()
+command! PackStatus call PackInit() | call minpac#status()
 "}}}
 
 "opts {{{
