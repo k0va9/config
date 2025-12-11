@@ -67,6 +67,9 @@ function! PackInit() abort
   call minpac#add('mattn/vim-molder')
   call minpac#add('ctrlpvim/ctrlp.vim')
   call minpac#add('mattn/ctrlp-matchfuzzy')
+  call minpac#add('mattn/ctrlp-gitchanges')
+  call minpac#add('mattn/ctrlp-lsp')
+
   call minpac#add('hrsh7th/vim-vsnip')
   call minpac#add('hrsh7th/vim-vsnip-integ')
   call minpac#add('mattn/vim-maketable')
