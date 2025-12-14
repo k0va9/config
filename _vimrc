@@ -69,6 +69,7 @@ function! PackInit() abort
   call minpac#add('mattn/ctrlp-matchfuzzy')
   call minpac#add('mattn/ctrlp-gitchanges')
   call minpac#add('mattn/ctrlp-lsp')
+  call minpac#add('machakann/vim-sandwich')
 
   call minpac#add('hrsh7th/vim-vsnip')
   call minpac#add('hrsh7th/vim-vsnip-integ')
@@ -89,6 +90,17 @@ let g:ctrlp_show_hidden = 1
 let g:ctrlp_max_files=10000
 let g:ctrlp_custom_ignore = 'node_modules\|vendor\|DS_Store\|git'
 let g:ctrlp_match_func = #{ match: 'ctrlp_matchfuzzy#matcher'}
+
+let g:sandwich#recipes = deepcopy(g:sandwich#default_recipes)
+let g:sandwich#recipes += [
+      \ {
+      \    "buns": ["```","```"],
+      \    'nesting': 0,
+      \    'input': ["cb"],
+      \    'filetype': ['markdown'],
+      \    'linewise': 1
+      \ },
+      \ ]
 "}}}
 
 "commands {{{
