@@ -23,4 +23,5 @@ ln -nfs "${SCRIPT_DIR}/_vimrc" ~/.config/nvim/init.vim
 ln -nfs "${SCRIPT_DIR}/_zshrc" ~/.zshrc
 ln -nfs "${SCRIPT_DIR}/tmux.conf" ~/.tmux.conf
 ln -nfs "${SCRIPT_DIR}/starship.toml" ~/.config/
+ln -nfs "${SCRIPT_DIR}/wezterm" ~/.config/
 echo "=== finish create symlinks ==="
