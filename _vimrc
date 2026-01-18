@@ -187,6 +187,11 @@ smap <expr> <C-j> vsnip#expandable() ? '<Plug>(vsnip-expand)' : '<C-j>'
 imap <expr> <C-l> vsnip#available(1) ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
 smap <expr> <C-l> vsnip#available(1) ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
 
+inoremap <expr> /
+      \ complete_info(['mode']).mode == 'files' && complete_info(['selected']).selected >= 0
+      \ ? '<C-x><C-f>'
+      \ : '/'
+
 autocmd FileType molder 
       \ call Key('n', 'h', '<Plug>(molder-up)',v:true)   | 
       \ call Key('n', 'l', '<Plug>(molder-open)',v:true)
