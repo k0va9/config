@@ -9,5 +9,7 @@
 	plog = "log -p"
 	graph = "log --oneline --graph"
 	pushf = "push --force-with-lease --force-if-includes origin HEAD"
+	ndf = "!git diff --no-merges origin/$(git rev-parse --abbrev-ref HEAD)..HEAD"
+	nlg = "!git log --no-merges origin/$(git rev-parse --abbrev-ref HEAD)..HEAD"
 [rebase]
 	autostash = true
