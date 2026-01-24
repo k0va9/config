@@ -59,6 +59,7 @@ function! PackInit() abort
   call minpac#init()
   call minpac#add('k-takata/minpac', { 'type': 'opt' })
   call minpac#add('vim-denops/denops.vim')
+  call minpac#add('skanehira/denops-docker.vim')
   call minpac#add('previm/previm')
   call minpac#add('tyru/open-browser.vim')
   call minpac#add('prettier/vim-prettier')
