@@ -75,6 +75,7 @@ function! PackInit() abort
   call minpac#add('hrsh7th/vim-vsnip')
   call minpac#add('hrsh7th/vim-vsnip-integ')
   call minpac#add('mattn/vim-maketable')
+  call minpac#add('rhysd/conflict-marker.vim')
 
   "lsp
   call minpac#add('prabirshrestha/vim-lsp')
