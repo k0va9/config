@@ -73,15 +73,24 @@ function! PackInit() abort
   call minpac#add('machakann/vim-sandwich')
 
   call minpac#add('hrsh7th/vim-vsnip')
-  call minpac#add('hrsh7th/vim-vsnip-integ')
+  " call minpac#add('hrsh7th/vim-vsnip-integ')
   call minpac#add('mattn/vim-maketable')
   call minpac#add('rhysd/conflict-marker.vim')
 
   "lsp
   call minpac#add('prabirshrestha/vim-lsp')
   call minpac#add('mattn/vim-lsp-settings')
-  call minpac#add('prabirshrestha/asyncomplete.vim')
-  call minpac#add('prabirshrestha/asyncomplete-lsp.vim')
+  " call minpac#add('prabirshrestha/asyncomplete.vim')
+  " call minpac#add('prabirshrestha/asyncomplete-lsp.vim')
+
+  "ddc
+  call minpac#add('Shougo/ddc.vim')
+  call minpac#add('Shougo/ddc-ui-native')
+  call minpac#add('Shougo/ddc-source-lsp')
+  call minpac#add('Shougo/ddc-source-around')
+  call minpac#add('LumaKernel/ddc-source-file')
+  call minpac#add('Shougo/ddc-filter-sorter_rank')
+  call minpac#add('Shougo/ddc-filter-matcher_head')
 
 endfunction
 
@@ -103,6 +112,36 @@ let g:sandwich#recipes += [
       \    'linewise': 1
       \ },
       \ ]
+
+call ddc#custom#patch_global('ui','native')
+call ddc#custom#patch_global('sources',['around','lsp', 'file'])
+
+call ddc#custom#patch_global('sourceOptions', #{
+    \  _ : #{
+    \    matchers: ['matcher_head'],
+    \    sorters: ['sorter_rank'],
+    \  },
+    \  around: #{ mark: 'A' },
+    \  lsp: #{
+    \    mark: 'lsp',
+    \    dup: v:true,
+    \    isVolatile: v:true,
+    \    forceCompletionPattern: '\.\w*|::\w*|->\w*|',
+    \  },
+    \  file: #{
+    \    isVolatile: v:true,
+    \    forceCompletionPattern: '\S/\S*',
+    \  },
+    \ })
+
+call ddc#custom#patch_global('sourceParams', #{
+    \  lsp: #{
+    \    lspEngine: 'vim-lsp',
+    \    enableResolveItem: v:true,
+    \    enableAdditionalTextEdit: v:true,
+    \  },
+    \ })
+call ddc#enable()
 "}}}
 
 "commands {{{
