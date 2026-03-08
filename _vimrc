@@ -60,6 +60,8 @@ function! PackInit() abort
   call minpac#add('k-takata/minpac', { 'type': 'opt' })
   call minpac#add('vim-denops/denops.vim')
   call minpac#add('skanehira/denops-docker.vim')
+  call minpac#add('lambdalisue/vim-kensaku')
+  call minpac#add('lambdalisue/vim-kensaku-search')
   call minpac#add('previm/previm')
   call minpac#add('tyru/open-browser.vim')
   call minpac#add('prettier/vim-prettier')
@@ -233,6 +235,8 @@ inoremap <expr> /
       \ ? '<C-x><C-f>'
       \ : '/'
 
+
+cnoremap <CR> <Plug>(kensaku-search-replace)<CR>
 autocmd FileType molder 
       \ call Key('n', 'h', '<Plug>(molder-up)',v:true)   | 
       \ call Key('n', 'l', '<Plug>(molder-open)',v:true)
