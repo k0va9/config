@@ -66,7 +66,7 @@ function! PackInit() abort
   call minpac#add('tyru/open-browser.vim')
   call minpac#add('prettier/vim-prettier')
   call minpac#add('cocopon/iceberg.vim')
-  call minpac#add('tyru/caw.vim')
+  "call minpac#add('tyru/caw.vim')
   call minpac#add('mattn/vim-molder')
   call minpac#add('ctrlpvim/ctrlp.vim')
   call minpac#add('mattn/ctrlp-matchfuzzy')
@@ -219,11 +219,6 @@ call Key('n', ';b', '<Cmd>CtrlPBuffer<CR>')
 call Key('c' , '<C-x>', '<C-r>=expand("%:p")<CR>')
 call Key('c' , '<C-a>', '<Home>')
 call Key('c' , '<C-e>', '<End>')
-call Key('nx', 'ccm'  , '<Plug>(caw:hatpos:toggle)')
-call Key('nx', 'ccz'  , '<Plug>(caw:zeropos:comment)')
-call Key('nx', 'ccuz' , '<Plug>(caw:zeropos:uncomment)')
-call Key('nx', 'cca'  , '<Plug>(caw:dollarpos:comment)')
-call Key('nx', 'ccua' , '<Plug>(caw:dollarpos:uncomment)')
 
 imap <expr> <C-j> vsnip#expandable() ? '<Plug>(vsnip-expand)' : '<C-j>'
 smap <expr> <C-j> vsnip#expandable() ? '<Plug>(vsnip-expand)' : '<C-j>'
@@ -246,3 +241,20 @@ if filereadable(expand('~/.vimrc_local'))
   source ~/.vimrc_local
 endif
 
+"custom comment keymap
+if !has('nvim')
+
+  packadd comment
+  let g:comment_mappings = v:false
+  call Key('nx', 'ccm', '<Plug>(comment-toggle-line)')
+
+elseif has('nvim')
+
+lua << EOL
+  local fn = function()
+    return require('vim._comment').operator() .. '_'
+  end
+  vim.keymap.set({'n', 'x'} , 'ccm', fn, { expr = true })
+EOL
+
+endif
