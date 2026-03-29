@@ -219,6 +219,7 @@ call Key('n', ';b', '<Cmd>CtrlPBuffer<CR>')
 call Key('c' , '<C-x>', '<C-r>=expand("%:p")<CR>')
 call Key('c' , '<C-a>', '<Home>')
 call Key('c' , '<C-e>', '<End>')
+call Key('nx', '/'    , '/\v')
 
 imap <expr> <C-j> vsnip#expandable() ? '<Plug>(vsnip-expand)' : '<C-j>'
 smap <expr> <C-j> vsnip#expandable() ? '<Plug>(vsnip-expand)' : '<C-j>'
