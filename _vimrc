@@ -164,6 +164,15 @@ let g:lsp_settings_filetype_typescript = [
 let g:vsnip_snippet_dir = expand('~/config/snippet')
 let g:vsnip_filetypes = {}
 let g:vsnip_filetypes.typescript = ['javascript']
+"colorscheme {{{
+augroup highlightIdeographicSpace
+  autocmd!
+  autocmd ColorScheme * highlight IdeographicSpace
+        \ term=underline
+        \ ctermbg=DarkCyan
+        \ guibg=DarkCyan
+  autocmd VimEnter,WinEnter * match IdeographicSpace /　/
+augroup END
 
 try
   colorscheme iceberg
@@ -172,6 +181,7 @@ catch
   "for lsp preview
   highlight clear FloatBorder
 endtry
+" }}}
 
 if finddir('.git') !=# ''
   set grepprg=git\ grep\ -n
@@ -188,6 +198,8 @@ set noswapfile
 set tabline=%!TabLine()
 set showtabline=1
 set hidden
+set list
+set listchars=tab:>-,trail:-
 "}}}
 
 "mapping {{{
