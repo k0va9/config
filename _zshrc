@@ -13,6 +13,8 @@ setopt hist_ignore_dups
 setopt hist_ignore_all_dups
 setopt list_types
 
+autoload -U compinit
+compinit
 
 alias ls='ls -a --color'
 alias ll='ls -l'
