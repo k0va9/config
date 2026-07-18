@@ -46,6 +46,13 @@ endfunction
 " }}}
 
 "plugins {{{
+function! Tap(plugname) abort
+  call PackInit()
+
+  return has_key(minpac#getpluglist(), a:plugname)
+        \ && !empty(minpac#getpackages("minpac","", a:plugname, 1))
+endfunction
+
 function! PackInit() abort
   let url = 'https://github.com/k-takata/minpac.git'
   let dir = '~/.config/nvim/pack/minpac/opt/minpac'
@@ -244,7 +251,11 @@ inoremap <expr> /
       \ : '/'
 
 
-cnoremap <CR> <Plug>(kensaku-search-replace)<CR>
+
+if Tap("vim-kensaku-search")
+  cnoremap <CR> <Plug>(kensaku-search-replace)<CR>
+endif
+
 autocmd FileType molder 
       \ call Key('n', 'h', '<Plug>(molder-up)',v:true)   | 
       \ call Key('n', 'l', '<Plug>(molder-open)',v:true)
