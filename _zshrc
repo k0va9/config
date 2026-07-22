@@ -16,6 +16,10 @@ setopt list_types
 autoload -U compinit
 compinit
 
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey '^o' edit-command-line
+
 alias ls='ls -a --color'
 alias ll='ls -l'
 alias dcp='docker compose up -d'
@@ -60,3 +64,5 @@ else
    PS1="%n@%m%~$(__git_ps1 "(%s)")$(setup_custom_status)%f"$'\n'"%(!.#.$) "
  }
 fi
+
+export EDITOR=nvim
