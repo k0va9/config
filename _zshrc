@@ -43,7 +43,7 @@ function setup_custom_status() {
   count_bg_jobs=$(jobs| wc -l)
 
   if [ $count_bg_jobs -gt 0 ]; then
-    echo "[bg:%j]"
+    echo "%F{red}+%j%f"
   fi
 }
 
@@ -61,7 +61,7 @@ if type starship >/dev/null 2>&1; then
   eval "$(starship init zsh)"
 else
  precmd() {
-   PS1="%n@%m%~$(__git_ps1 "(%s)")$(setup_custom_status)%f"$'\n'"%(!.#.$) "
+   PS1="%n@%m: %F{cyan}%~%f$(__git_ps1 "(%s)") $(setup_custom_status)"$'\n'"%(!.#.$) "
  }
 fi
 
