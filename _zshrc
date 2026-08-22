@@ -40,11 +40,8 @@ function docker_down_container() {
 }
 
 function setup_custom_status() {
-  count_bg_jobs=$(jobs| wc -l)
-
-  if [ $count_bg_jobs -gt 0 ]; then
-    echo "%F{red}+%j%f"
-  fi
+  count_bg_jobs=%(1j."%F{red}+%j%f".)
+  echo $count_bg_jobs
 }
 
 function fzy_hist() {
